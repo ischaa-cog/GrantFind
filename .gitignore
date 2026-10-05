@@ -1,0 +1,21 @@
+node_modules
+dist
+.DS_Store
+server/public
+vite.config.ts.*
+*.tar.gz
+
+# Local credentials and private workspace files
+.env
+.env.*
+!.env.example
+.local/
+.cache/
+.config/
+.agents/
+*.log
+webhook-configs.json
+
+# Generated reports and debugging captures
+deliverables/
+screenshots/
