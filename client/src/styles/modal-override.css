@@ -1,0 +1,10 @@
+/* Hide default dialog close button */
+[data-radix-dialog-content] > button[data-radix-dialog-close] {
+  display: none !important;
+}
+
+/* Ensure our custom close button is visible */
+.custom-close-button {
+  display: block !important;
+  z-index: 9999 !important;
+}

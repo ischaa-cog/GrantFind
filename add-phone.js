@@ -1,0 +1,1 @@
+import { neon } from "@neondatabase/serverless"; const sql = neon(process.env.DATABASE_URL!); sql`ALTER TABLE users ADD COLUMN IF NOT EXISTS phone TEXT;`.then(() => console.log("Phone column added successfully")).catch(console.error);

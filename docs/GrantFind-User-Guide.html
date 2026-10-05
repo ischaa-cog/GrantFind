@@ -1,0 +1,1571 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>GrantFind App – End User Guide</title>
+        <style>
+            @page {
+                margin: 1in;
+                size: letter;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                max-width: 8.5in;
+                margin: 0 auto;
+                padding: 20px;
+                background: white;
+            }
+
+            h1 {
+                color: #1a1a1a;
+                border-bottom: 3px solid #f5a623;
+                padding-bottom: 10px;
+                font-size: 28px;
+            }
+
+            h2 {
+                color: #2c3e50;
+                border-bottom: 2px solid #f5a623;
+                padding-bottom: 8px;
+                margin-top: 40px;
+                font-size: 22px;
+                page-break-after: avoid;
+            }
+
+            h3 {
+                color: #34495e;
+                margin-top: 25px;
+                font-size: 18px;
+                page-break-after: avoid;
+            }
+
+            h4 {
+                color: #555;
+                margin-top: 20px;
+                font-size: 16px;
+            }
+
+            p {
+                margin-bottom: 12px;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 15px 0;
+                page-break-inside: avoid;
+            }
+
+            th,
+            td {
+                border: 1px solid #ddd;
+                padding: 10px 12px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #f5a623;
+                color: white;
+                font-weight: 600;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            tr:hover {
+                background-color: #fff3d6;
+            }
+
+            ol,
+            ul {
+                margin-bottom: 15px;
+                padding-left: 25px;
+            }
+
+            li {
+                margin-bottom: 8px;
+            }
+
+            .title-page {
+                text-align: center;
+                padding: 100px 0;
+                page-break-after: always;
+            }
+
+            .title-page h1 {
+                font-size: 36px;
+                border: none;
+                color: #1a1a1a;
+                margin-bottom: 10px;
+            }
+
+            .title-page .subtitle {
+                font-size: 24px;
+                color: #f5a623;
+                margin-bottom: 50px;
+            }
+
+            .title-page .version {
+                font-size: 16px;
+                color: #666;
+                margin-top: 100px;
+            }
+
+            .toc {
+                page-break-after: always;
+            }
+
+            .toc h2 {
+                margin-bottom: 20px;
+            }
+
+            .toc ul {
+                list-style: none;
+                padding-left: 0;
+            }
+
+            .toc li {
+                padding: 8px 0;
+                border-bottom: 1px dotted #ccc;
+            }
+
+            .toc a {
+                color: #2c3e50;
+                text-decoration: none;
+            }
+
+            .toc a:hover {
+                color: #f5a623;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            .screenshot-placeholder {
+                background: #f5f5f5;
+                border: 2px dashed #ccc;
+                padding: 40px;
+                text-align: center;
+                color: #888;
+                margin: 20px 0;
+                border-radius: 8px;
+            }
+
+            .tip {
+                background: #fff9e6;
+                border-left: 4px solid #f5a623;
+                padding: 15px;
+                margin: 20px 0;
+                border-radius: 0 8px 8px 0;
+            }
+
+            .tip strong {
+                color: #f5a623;
+            }
+
+            .note {
+                background: #e8f4fd;
+                border-left: 4px solid #3498db;
+                padding: 15px;
+                margin: 20px 0;
+                border-radius: 0 8px 8px 0;
+            }
+
+            blockquote {
+                background: #f9f9f9;
+                border-left: 4px solid #f5a623;
+                padding: 15px;
+                margin: 20px 0;
+                font-style: italic;
+            }
+
+            .footer {
+                text-align: center;
+                margin-top: 50px;
+                padding: 30px;
+                border-top: 2px solid #f5a623;
+                color: #666;
+            }
+
+            .support-page {
+                page-break-before: always;
+            }
+
+            .support-box {
+                background: #f9f9f9;
+                padding: 30px;
+                border-radius: 10px;
+                margin: 20px 0;
+            }
+
+            .placeholder {
+                background: #fff3cd;
+                padding: 2px 8px;
+                border-radius: 4px;
+                font-family: monospace;
+                color: #856404;
+            }
+
+            @media print {
+                body {
+                    padding: 0;
+                }
+
+                .page-break {
+                    page-break-before: always;
+                }
+
+                h2,
+                h3 {
+                    page-break-after: avoid;
+                }
+
+                table,
+                figure {
+                    page-break-inside: avoid;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- TITLE PAGE -->
+        <div class="title-page">
+            <h1>GrantFind App</h1>
+            <div class="subtitle">End User Guide</div>
+            <div
+                style="
+                    width: 100px;
+                    height: 4px;
+                    background: #f5a623;
+                    margin: 30px auto;
+                "
+            ></div>
+            <p style="font-size: 18px; color: #666">
+                Your complete guide to finding and winning grants for your
+                business
+            </p>
+            <div class="version">
+                <p><strong>Version:</strong> 1.0</p>
+                <p><strong>Date:</strong> January 18, 2026</p>
+            </div>
+        </div>
+
+        <!-- TABLE OF CONTENTS -->
+        <div class="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#section1">1. Overview</a></li>
+                <li><a href="#section2">2. Who This App Is For</a></li>
+                <li>
+                    <a href="#section3"
+                        >3. What You Need Before Using GrantFind</a
+                    >
+                </li>
+                <li><a href="#section4">4. How to Log In / Sign Up</a></li>
+                <li>
+                    <a href="#section5"
+                        >5. Setting Up Your Profile (First-Time Setup)</a
+                    >
+                </li>
+                <li><a href="#section6">6. How to Search for Grants</a></li>
+                <li><a href="#section7">7. How to Filter & Sort Results</a></li>
+                <li><a href="#section8">8. How to Open and Read a Grant</a></li>
+                <li><a href="#section9">9. How to Save/Bookmark Grants</a></li>
+                <li>
+                    <a href="#section10"
+                        >10. How to Track Deadlines & Reminders</a
+                    >
+                </li>
+                <li><a href="#section11">11. How to Export or Share</a></li>
+                <li><a href="#section12">12. Best Practices</a></li>
+                <li><a href="#section13">13. Troubleshooting</a></li>
+                <li><a href="#section14">14. FAQ</a></li>
+                <li><a href="#section15">15. Glossary of Grant Terms</a></li>
+                <li><a href="#section16">16. Support</a></li>
+            </ul>
+        </div>
+
+        <!-- SECTION 1: OVERVIEW -->
+        <div class="page-break" id="section1">
+            <h2>1. Overview</h2>
+
+            <h3>What is GrantFind?</h3>
+            <p>
+                GrantFind is an easy-to-use platform that helps you discover,
+                apply for, and manage grant opportunities for your business.
+                Whether you're a startup founder, small business owner, or
+                nonprofit leader, GrantFind connects you with funding
+                opportunities that match your needs.
+            </p>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li>
+                    <strong>Grant Vault</strong> – Browse a curated collection
+                    of verified grant opportunities
+                </li>
+                <li>
+                    <strong>AI Grant Finder</strong> – Answer a few questions
+                    and get personalized grant recommendations
+                </li>
+                <li>
+                    <strong>Application Reviewer</strong> – Get AI-powered
+                    feedback on your grant applications before submitting
+                </li>
+                <li>
+                    <strong>Proposal Writer</strong> – Step-by-step AI
+                    assistance to write compelling grant proposals
+                </li>
+                <li>
+                    <strong>Business Dashboard</strong> – Track all your
+                    applications and deadlines in one place
+                </li>
+                <li>
+                    <strong>Email Confirmations</strong> – Receive updates about
+                    your account and applications
+                </li>
+            </ul>
+
+            <h3>How GrantFind Helps You</h3>
+            <table>
+                <tr>
+                    <th>Challenge</th>
+                    <th>How GrantFind Helps</th>
+                </tr>
+                <tr>
+                    <td>"I don't know which grants I qualify for"</td>
+                    <td>
+                        AI Grant Finder matches you with relevant opportunities
+                    </td>
+                </tr>
+                <tr>
+                    <td>"Writing proposals takes too long"</td>
+                    <td>Proposal Writer guides you section by section</td>
+                </tr>
+                <tr>
+                    <td>"I'm not sure if my application is strong enough"</td>
+                    <td>
+                        Application Reviewer scores and improves your drafts
+                    </td>
+                </tr>
+                <tr>
+                    <td>"I lose track of deadlines"</td>
+                    <td>
+                        Dashboard tracks all your applications and due dates
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- SECTION 2: WHO THIS APP IS FOR -->
+        <div class="page-break" id="section2">
+            <h2>2. Who This App Is For</h2>
+            <p>GrantFind is designed for:</p>
+
+            <h3>Small Business Owners</h3>
+            <p>
+                If you run a small business and are looking for non-dilutive
+                funding (money you don't have to pay back or give up equity
+                for), GrantFind can help you find grants specifically for your
+                industry and business type.
+            </p>
+
+            <h3>Startup Founders</h3>
+            <p>
+                Early-stage companies often need capital to grow. GrantFind
+                helps you discover grants for innovation, technology, and new
+                ventures.
+            </p>
+
+            <h3>Women-Owned Businesses</h3>
+            <p>
+                Many grants specifically support women entrepreneurs. GrantFind
+                includes a dedicated category of grants for women-owned
+                businesses.
+            </p>
+
+            <h3>Minority-Owned Businesses</h3>
+            <p>
+                GrantFind features grants designed to support minority
+                entrepreneurs and underrepresented founders.
+            </p>
+
+            <h3>Veteran-Owned Businesses</h3>
+            <p>
+                Veterans transitioning to entrepreneurship can find specialized
+                grants and funding programs through GrantFind.
+            </p>
+
+            <h3>Nonprofit Organizations</h3>
+            <p>
+                Organizations with a social mission can discover foundation
+                grants and government funding opportunities.
+            </p>
+
+            <h3>First-Time Grant Seekers</h3>
+            <p>
+                Never applied for a grant before? GrantFind's AI tools walk you
+                through the entire process step by step.
+            </p>
+        </div>
+
+        <!-- SECTION 3: WHAT YOU NEED -->
+        <div class="page-break" id="section3">
+            <h2>3. What You Need Before Using GrantFind</h2>
+            <p>
+                Before you start, gather the following information about your
+                business:
+            </p>
+
+            <h3>Required Information</h3>
+            <table>
+                <tr>
+                    <th>Item</th>
+                    <th>Why You Need It</th>
+                </tr>
+                <tr>
+                    <td><strong>Business Name</strong></td>
+                    <td>To set up your profile and track applications</td>
+                </tr>
+                <tr>
+                    <td><strong>Business Type</strong></td>
+                    <td>
+                        Helps match you with relevant grants (LLC, Corporation,
+                        Sole Proprietor, etc.)
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Industry/Sector</strong></td>
+                    <td>Many grants are industry-specific</td>
+                </tr>
+                <tr>
+                    <td><strong>Year Founded</strong></td>
+                    <td>Some grants have age requirements</td>
+                </tr>
+                <tr>
+                    <td><strong>Location</strong></td>
+                    <td>State/city for geographic-specific grants</td>
+                </tr>
+                <tr>
+                    <td><strong>Email Address</strong></td>
+                    <td>For account creation and notifications</td>
+                </tr>
+            </table>
+
+            <h3>Helpful to Have Ready</h3>
+            <ul>
+                <li>
+                    <strong>Business Description</strong> – A 2-3 sentence
+                    summary of what your business does
+                </li>
+                <li>
+                    <strong>Revenue Information</strong> – Annual revenue (even
+                    if $0 for startups)
+                </li>
+                <li>
+                    <strong>Employee Count</strong> – Number of team members
+                </li>
+                <li>
+                    <strong>Mission Statement</strong> – Your business's purpose
+                    and goals
+                </li>
+                <li>
+                    <strong>Business Certifications</strong> – Woman-owned,
+                    minority-owned, veteran-owned, etc.
+                </li>
+            </ul>
+
+            <h3>Technical Requirements</h3>
+            <ul>
+                <li>A computer, tablet, or smartphone with internet access</li>
+                <li>A modern web browser (Chrome, Safari, Firefox, or Edge)</li>
+                <li>A valid email address</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 4: LOGIN/SIGNUP -->
+        <div class="page-break" id="section4">
+            <h2>4. How to Log In / Sign Up</h2>
+
+            <h3>Creating a New Account</h3>
+            <ol>
+                <li>Go to <span class="placeholder">[APP URL]</span></li>
+                <li>
+                    Click the <span class="placeholder">[Sign Up]</span> button
+                    in the top right corner
+                </li>
+                <li>
+                    Enter your information:
+                    <ul>
+                        <li>Full Name</li>
+                        <li>Email Address</li>
+                        <li>Password (at least 8 characters)</li>
+                    </ul>
+                </li>
+                <li>Click <span class="placeholder">[Create Account]</span></li>
+                <li>Check your email for a confirmation message</li>
+                <li>
+                    Click the confirmation link in the email to verify your
+                    account
+                </li>
+                <li>You're now ready to use GrantFind!</li>
+            </ol>
+
+            <div class="screenshot-placeholder">
+                [SCREENSHOT HERE: Sign up form]
+            </div>
+
+            <h3>Logging In to Your Account</h3>
+            <ol>
+                <li>Go to <span class="placeholder">[APP URL]</span></li>
+                <li>
+                    Click the <span class="placeholder">[Log In]</span> button
+                    in the top right corner
+                </li>
+                <li>Enter your email address</li>
+                <li>Enter your password</li>
+                <li>Click <span class="placeholder">[Log In]</span></li>
+            </ol>
+
+            <div class="screenshot-placeholder">
+                [SCREENSHOT HERE: Login form]
+            </div>
+
+            <h3>Forgot Your Password?</h3>
+            <ol>
+                <li>
+                    On the login page, click
+                    <span class="placeholder">[Forgot Password]</span>
+                </li>
+                <li>Enter the email address associated with your account</li>
+                <li>
+                    Click <span class="placeholder">[Send Reset Link]</span>
+                </li>
+                <li>Check your email for reset instructions</li>
+                <li>Click the link and create a new password</li>
+            </ol>
+
+            <h3>Logging Out</h3>
+            <ol>
+                <li>Click your profile icon in the top right corner</li>
+                <li>
+                    Select <span class="placeholder">[Log Out]</span> from the
+                    dropdown menu
+                </li>
+            </ol>
+        </div>
+
+        <!-- SECTION 5: PROFILE SETUP -->
+        <div class="page-break" id="section5">
+            <h2>5. Setting Up Your Profile (First-Time Setup)</h2>
+            <p>
+                When you first log in, you'll be prompted to complete your
+                profile. This helps GrantFind recommend better grants for you.
+            </p>
+
+            <h3>Step 1: Add Your First Business</h3>
+            <ol>
+                <li>
+                    After logging in, you'll see the
+                    <span class="placeholder">[Add Business]</span> prompt
+                </li>
+                <li>
+                    Click <span class="placeholder">[Add Business]</span> or the
+                    <span class="placeholder">[+]</span> button
+                </li>
+                <li>
+                    Fill in your business details:
+                    <ul>
+                        <li>
+                            <strong>Business Name</strong> – Your official
+                            business name
+                        </li>
+                        <li>
+                            <strong>Industry</strong> – Select from the dropdown
+                            menu
+                        </li>
+                        <li>
+                            <strong>Business Type</strong> – LLC, Corporation,
+                            Sole Proprietor, etc.
+                        </li>
+                        <li>
+                            <strong>Year Founded</strong> – When your business
+                            started
+                        </li>
+                        <li>
+                            <strong>Location</strong> – Your business address or
+                            headquarters
+                        </li>
+                        <li>
+                            <strong>Description</strong> – A brief summary of
+                            your business (2-3 sentences)
+                        </li>
+                    </ul>
+                </li>
+                <li>Click <span class="placeholder">[Save Business]</span></li>
+            </ol>
+
+            <div class="screenshot-placeholder">
+                [SCREENSHOT HERE: Add Business form]
+            </div>
+
+            <h3>Step 2: Add Business Certifications (Optional)</h3>
+            <p>
+                If your business has any special certifications, add them to see
+                more relevant grants:
+            </p>
+            <ol>
+                <li>Go to your business profile</li>
+                <li>
+                    Look for the
+                    <span class="placeholder">[Certifications]</span> section
+                </li>
+                <li>
+                    Check any that apply:
+                    <ul>
+                        <li>☐ Woman-Owned Business</li>
+                        <li>☐ Minority-Owned Business</li>
+                        <li>☐ Veteran-Owned Business</li>
+                        <li>☐ Disabled Veteran-Owned</li>
+                        <li>☐ LGBTQ+-Owned</li>
+                        <li>☐ Small Disadvantaged Business</li>
+                    </ul>
+                </li>
+                <li>Click <span class="placeholder">[Save]</span></li>
+            </ol>
+
+            <h3>Step 3: Review Your Dashboard</h3>
+            <p>
+                Once setup is complete, you'll see your main dashboard showing:
+            </p>
+            <ul>
+                <li>Your registered businesses</li>
+                <li>Recent grant recommendations</li>
+                <li>Application status (if any)</li>
+                <li>Upcoming deadlines</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 6: SEARCH FOR GRANTS -->
+        <div class="page-break" id="section6">
+            <h2>6. How to Search for Grants</h2>
+            <p>
+                GrantFind offers two ways to find grants: browsing the Grants
+                Vault or using the AI Grant Finder.
+            </p>
+
+            <h3>Method 1: Browse the Grants Vault</h3>
+            <ol>
+                <li>
+                    Click <span class="placeholder">[Grants Vault]</span> in the
+                    navigation menu (or on mobile, tap the menu icon and select
+                    Grants Vault)
+                </li>
+                <li>Browse the list of available grants</li>
+                <li>
+                    Each grant card shows:
+                    <ul>
+                        <li>Grant name</li>
+                        <li>Funding organization</li>
+                        <li>Award amount</li>
+                        <li>Deadline</li>
+                        <li>Brief description</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="screenshot-placeholder">
+                [SCREENSHOT HERE: Grants Vault page]
+            </div>
+
+            <h3>Method 2: Use the AI Grant Finder</h3>
+            <p>
+                The Grant Finder asks you questions about your business and uses
+                AI to match you with the best opportunities.
+            </p>
+            <ol>
+                <li>
+                    Click <span class="placeholder">[Grant Finder]</span> in the
+                    navigation menu
+                </li>
+                <li>
+                    Answer the 9-question questionnaire:
+                    <ul>
+                        <li>Business type</li>
+                        <li>Industry</li>
+                        <li>Location</li>
+                        <li>Revenue</li>
+                        <li>Employee count</li>
+                        <li>Years in business</li>
+                        <li>Certifications</li>
+                        <li>Funding purpose</li>
+                        <li>Funding amount needed</li>
+                    </ul>
+                </li>
+                <li>Click <span class="placeholder">[Find My Grants]</span></li>
+                <li>Review your personalized list of 10 matched grants</li>
+                <li>Click any grant to learn more</li>
+            </ol>
+
+            <div class="screenshot-placeholder">
+                [SCREENSHOT HERE: Grant Finder questionnaire]
+            </div>
+
+            <div class="tip">
+                <strong>Quick Tip:</strong> The AI Grant Finder is the fastest
+                way to find grants you actually qualify for. The more accurate
+                your answers, the better your matches!
+            </div>
+        </div>
+
+        <!-- SECTION 7: FILTER & SORT -->
+        <div class="page-break" id="section7">
+            <h2>7. How to Filter & Sort Results</h2>
+
+            <h3>Filtering Grants</h3>
+            <p>In the Grants Vault, use filters to narrow your search:</p>
+            <ol>
+                <li>
+                    Look for the
+                    <span class="placeholder">[Filter]</span> options at the top
+                    of the page
+                </li>
+                <li>
+                    Available filters include:
+                    <ul>
+                        <li>
+                            <strong>Category</strong> – Women-owned,
+                            Minority-owned, Veteran-owned, General, Federal,
+                            Industry-specific
+                        </li>
+                        <li>
+                            <strong>Award Amount</strong> – Minimum and maximum
+                            funding amounts
+                        </li>
+                        <li>
+                            <strong>Deadline</strong> – Show only grants with
+                            upcoming deadlines
+                        </li>
+                        <li>
+                            <strong>Application Status</strong> – Open, Closing
+                            Soon, Closed
+                        </li>
+                    </ul>
+                </li>
+                <li>Select your desired filters</li>
+                <li>Results update automatically</li>
+            </ol>
+
+            <div class="screenshot-placeholder">
+                [SCREENSHOT HERE: Filter options]
+            </div>
+
+            <h3>Sorting Grants</h3>
+            <ol>
+                <li>
+                    Look for the
+                    <span class="placeholder">[Sort By]</span> dropdown
+                </li>
+                <li>
+                    Choose how to organize results:
+                    <ul>
+                        <li>
+                            <strong>Deadline (Soonest First)</strong> – See
+                            urgent opportunities first
+                        </li>
+                        <li>
+                            <strong>Award Amount (Highest First)</strong> – See
+                            largest grants first
+                        </li>
+                        <li>
+                            <strong>Award Amount (Lowest First)</strong> – See
+                            smaller, often easier-to-win grants
+                        </li>
+                        <li>
+                            <strong>Recently Added</strong> – See newest grant
+                            opportunities
+                        </li>
+                        <li>
+                            <strong>Rating</strong> – See highest-rated
+                            opportunities first
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3>Combining Filters</h3>
+            <p>You can use multiple filters together. For example:</p>
+            <ul>
+                <li>
+                    Category: Women-Owned + Award Amount: $10,000+ + Deadline:
+                    Next 30 days
+                </li>
+            </ul>
+            <p>
+                This shows women-owned business grants over $10,000 due within
+                the next month.
+            </p>
+        </div>
+
+        <!-- SECTION 8: OPEN AND READ A GRANT -->
+        <div class="page-break" id="section8">
+            <h2>8. How to Open and Read a Grant</h2>
+
+            <h3>Viewing Grant Details</h3>
+            <ol>
+                <li>From the Grants Vault, click on any grant card</li>
+                <li>The grant details page shows:</li>
+            </ol>
+
+            <table>
+                <tr>
+                    <th>Section</th>
+                    <th>What It Contains</th>
+                </tr>
+                <tr>
+                    <td><strong>Overview</strong></td>
+                    <td>Summary of the grant program</td>
+                </tr>
+                <tr>
+                    <td><strong>Award Amount</strong></td>
+                    <td>How much funding is available</td>
+                </tr>
+                <tr>
+                    <td><strong>Eligibility</strong></td>
+                    <td>Who can apply</td>
+                </tr>
+                <tr>
+                    <td><strong>Deadline</strong></td>
+                    <td>When applications are due</td>
+                </tr>
+                <tr>
+                    <td><strong>Requirements</strong></td>
+                    <td>What you need to submit</td>
+                </tr>
+                <tr>
+                    <td><strong>How to Apply</strong></td>
+                    <td>Step-by-step application instructions</td>
+                </tr>
+                <tr>
+                    <td><strong>Official Link</strong></td>
+                    <td>Direct link to the grant program website</td>
+                </tr>
+            </table>
+
+            <div class="screenshot-placeholder">
+                [SCREENSHOT HERE: Grant details page]
+            </div>
+
+            <h3>Understanding Eligibility</h3>
+            <p>
+                Before applying, carefully review the eligibility section.
+                Common requirements include:
+            </p>
+            <ul>
+                <li>
+                    <strong>Business Type</strong> – Must be an LLC,
+                    Corporation, etc.
+                </li>
+                <li>
+                    <strong>Revenue Limits</strong> – Maximum annual revenue
+                </li>
+                <li>
+                    <strong>Location</strong> – Must operate in certain
+                    states/cities
+                </li>
+                <li><strong>Industry</strong> – Specific sectors only</li>
+                <li><strong>Age</strong> – Business must be X years old</li>
+                <li>
+                    <strong>Certifications</strong> – Must be
+                    woman/minority/veteran-owned
+                </li>
+            </ul>
+
+            <h3>Visiting the Official Grant Page</h3>
+            <ol>
+                <li>
+                    On the grant details page, find the
+                    <span class="placeholder">[Apply Now]</span> or
+                    <span class="placeholder">[Official Website]</span> button
+                </li>
+                <li>
+                    Click to open the grant program's official website in a new
+                    tab
+                </li>
+                <li>
+                    You'll complete your actual application on their website
+                </li>
+            </ol>
+
+            <div class="note">
+                <strong>Note:</strong> GrantFind helps you find and prepare for
+                grants, but you submit applications directly to the grant
+                provider's website.
+            </div>
+        </div>
+
+        <!-- SECTION 9: SAVE/BOOKMARK -->
+        <div class="page-break" id="section9">
+            <h2>9. How to Save/Bookmark Grants</h2>
+
+            <h3>Saving a Grant to Your Favorites</h3>
+            <ol>
+                <li>Find a grant you're interested in</li>
+                <li>
+                    Click the <span class="placeholder">[Save]</span> or
+                    <span class="placeholder">[Bookmark]</span> icon (usually a
+                    star or heart)
+                </li>
+                <li>The grant is now saved to your account</li>
+            </ol>
+
+            <h3>Viewing Your Saved Grants</h3>
+            <ol>
+                <li>Go to your <span class="placeholder">[Dashboard]</span></li>
+                <li>
+                    Look for the
+                    <span class="placeholder">[Saved Grants]</span> section
+                </li>
+                <li>View all grants you've bookmarked</li>
+            </ol>
+
+            <h3>Removing a Saved Grant</h3>
+            <ol>
+                <li>Go to your saved grants</li>
+                <li>
+                    Click the <span class="placeholder">[Save]</span> icon again
+                    to unsave
+                </li>
+                <li>
+                    Or click <span class="placeholder">[Remove]</span> next to
+                    the grant
+                </li>
+            </ol>
+
+            <h3>Organizing Saved Grants</h3>
+            <p>Consider saving grants into mental categories:</p>
+            <ul>
+                <li>Grants you definitely qualify for</li>
+                <li>Grants you might qualify for (need to verify)</li>
+                <li>Grants to apply for this month</li>
+                <li>Grants to apply for later</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 10: TRACK DEADLINES -->
+        <div class="page-break" id="section10">
+            <h2>10. How to Track Deadlines & Reminders</h2>
+
+            <h3>Your Application Dashboard</h3>
+            <p>
+                The dashboard helps you track all your grant activities in one
+                place.
+            </p>
+            <ol>
+                <li>
+                    Click <span class="placeholder">[Home]</span> or the
+                    GrantFind logo to go to your dashboard
+                </li>
+                <li>
+                    View the
+                    <span class="placeholder">[My Applications]</span> section
+                </li>
+                <li>See all grants you've applied to or are preparing for</li>
+            </ol>
+
+            <h3>Understanding Application Status</h3>
+            <table>
+                <tr>
+                    <th>Status</th>
+                    <th>Meaning</th>
+                </tr>
+                <tr>
+                    <td><strong>Not Started</strong></td>
+                    <td>You saved the grant but haven't begun applying</td>
+                </tr>
+                <tr>
+                    <td><strong>In Progress</strong></td>
+                    <td>You're currently working on this application</td>
+                </tr>
+                <tr>
+                    <td><strong>Submitted</strong></td>
+                    <td>You've submitted your application</td>
+                </tr>
+                <tr>
+                    <td><strong>Under Review</strong></td>
+                    <td>The grant provider is reviewing your application</td>
+                </tr>
+                <tr>
+                    <td><strong>Approved</strong></td>
+                    <td>Congratulations! Your application was successful</td>
+                </tr>
+                <tr>
+                    <td><strong>Rejected</strong></td>
+                    <td>Your application was not selected this time</td>
+                </tr>
+            </table>
+
+            <h3>Deadline Tracking</h3>
+            <ul>
+                <li>
+                    Deadlines appear on grant cards in the format "Due Aug 18"
+                    or "Due in 5 days"
+                </li>
+                <li>
+                    Grants due within 7 days show "Due in X days" to grab your
+                    attention
+                </li>
+                <li>Past deadlines are marked as "Closed"</li>
+            </ul>
+
+            <h3>Setting Up Reminders</h3>
+            <ol>
+                <li>
+                    When viewing a grant, look for the
+                    <span class="placeholder">[Set Reminder]</span> option
+                </li>
+                <li>
+                    Choose when you want to be reminded (1 week before, 3 days
+                    before, etc.)
+                </li>
+                <li>You'll receive an email reminder before the deadline</li>
+            </ol>
+        </div>
+
+        <!-- SECTION 11: EXPORT OR SHARE -->
+        <div class="page-break" id="section11">
+            <h2>11. How to Export or Share</h2>
+
+            <h3>Sharing a Grant with Others</h3>
+            <ol>
+                <li>Open the grant details page</li>
+                <li>
+                    Look for the <span class="placeholder">[Share]</span> button
+                </li>
+                <li>
+                    Options may include:
+                    <ul>
+                        <li>Copy link to clipboard</li>
+                        <li>Share via email</li>
+                        <li>Share on social media</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3>Exporting Grant Information</h3>
+            <p>If you need grant information for your records:</p>
+            <ol>
+                <li>Open the grant details page</li>
+                <li>Use your browser's print function (Ctrl+P or Cmd+P)</li>
+                <li>Select "Save as PDF" as the destination</li>
+                <li>Save the file to your computer</li>
+            </ol>
+
+            <h3>Sharing with Team Members</h3>
+            <p>If you're working with partners or team members:</p>
+            <ol>
+                <li>Copy the grant page URL from your browser</li>
+                <li>Send the link via email or messaging</li>
+                <li>They'll need a GrantFind account to view full details</li>
+            </ol>
+        </div>
+
+        <!-- SECTION 12: BEST PRACTICES -->
+        <div class="page-break" id="section12">
+            <h2>12. Best Practices</h2>
+            <h3>How to Find Better Grants Faster</h3>
+
+            <h4>1. Complete Your Profile Fully</h4>
+            <p>
+                The more information you provide about your business, the better
+                your grant matches will be.
+            </p>
+
+            <h4>2. Use the AI Grant Finder First</h4>
+            <p>
+                Instead of browsing hundreds of grants, let the AI narrow it
+                down to your best 10 matches.
+            </p>
+
+            <h4>3. Apply to Grants You Actually Qualify For</h4>
+            <p>
+                Read eligibility requirements carefully. Applying to grants you
+                don't qualify for wastes your time.
+            </p>
+
+            <h4>4. Start with Smaller Grants</h4>
+            <p>
+                Grants under $25,000 often have simpler applications and less
+                competition. Build your grant-winning track record with these
+                first.
+            </p>
+
+            <h4>5. Apply Early, Not Last Minute</h4>
+            <p>
+                Many grants review applications as they come in. Submitting
+                early can give you an advantage.
+            </p>
+
+            <h4>6. Use the Proposal Writer Tool</h4>
+            <p>
+                Don't stare at a blank page. The AI Proposal Writer guides you
+                through each section step by step.
+            </p>
+
+            <h4>7. Use the Application Reviewer Before Submitting</h4>
+            <p>
+                Get AI feedback on your application to catch weak spots and
+                improve your chances.
+            </p>
+
+            <h4>8. Track Everything in Your Dashboard</h4>
+            <p>
+                Log every application to stay organized and never miss a
+                deadline.
+            </p>
+
+            <h4>9. Reuse and Adapt</h4>
+            <p>
+                Once you write a strong grant proposal, you can adapt it for
+                similar opportunities.
+            </p>
+
+            <h4>10. Apply to Multiple Grants</h4>
+            <p>
+                Don't put all your eggs in one basket. Apply to 5-10 relevant
+                grants to increase your odds of winning.
+            </p>
+        </div>
+
+        <!-- SECTION 13: TROUBLESHOOTING -->
+        <div class="page-break" id="section13">
+            <h2>13. Troubleshooting</h2>
+            <h3>Problem → Solution</h3>
+
+            <table>
+                <tr>
+                    <th style="width: 35%">Problem</th>
+                    <th>Solution</th>
+                </tr>
+                <tr>
+                    <td><strong>I can't log in</strong></td>
+                    <td>
+                        1. Check that you're using the correct email address.<br />2.
+                        Try the "Forgot Password" option.<br />3. Make sure Caps
+                        Lock is off.<br />4. Clear your browser cache and try
+                        again.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>I'm not receiving confirmation emails</strong>
+                    </td>
+                    <td>
+                        1. Check your spam/junk folder.<br />2. Add
+                        noreply@grantfind.com to your contacts.<br />3. Wait
+                        5-10 minutes and check again.<br />4. Contact support if
+                        still not received.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>The page won't load</strong></td>
+                    <td>
+                        1. Refresh the page (F5 or Cmd+R).<br />2. Try a
+                        different browser.<br />3. Clear your browser cache.<br />4.
+                        Check your internet connection.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>I can't find grants for my industry</strong>
+                    </td>
+                    <td>
+                        1. Try broader search terms.<br />2. Use the AI Grant
+                        Finder for better matches.<br />3. Check the "General"
+                        category.<br />4. Federal grants often apply to many
+                        industries.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>My saved grants disappeared</strong></td>
+                    <td>
+                        1. Make sure you're logged into the correct account.<br />2.
+                        Check if the grant deadline has passed (expired grants
+                        may be archived).
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>The Apply button doesn't work</strong></td>
+                    <td>
+                        1. The link opens in a new tab – check if it's blocked
+                        by your browser.<br />2. Allow pop-ups for this site.<br />3.
+                        Try right-clicking and selecting "Open in New Tab".
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>I entered wrong business information</strong>
+                    </td>
+                    <td>
+                        1. Go to your business profile.<br />2. Click "Edit" to
+                        update your information.<br />3. Save your changes.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>The site looks broken on my phone</strong></td>
+                    <td>
+                        1. Make sure you're using the mobile menu (hamburger
+                        icon).<br />2. Try rotating your phone to landscape.<br />3.
+                        Update your mobile browser.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Grant Finder won't give me results</strong></td>
+                    <td>
+                        1. Make sure you answered all 9 questions.<br />2. Try
+                        different/broader answers.<br />3. Refresh and try
+                        again.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>I got logged out unexpectedly</strong></td>
+                    <td>
+                        1. Sessions expire after inactivity.<br />2. Simply log
+                        in again.<br />3. Your saved data is preserved.
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- SECTION 14: FAQ -->
+        <div class="page-break" id="section14">
+            <h2>14. FAQ</h2>
+
+            <h3>General Questions</h3>
+
+            <p><strong>Q: Is GrantFind free to use?</strong></p>
+            <p>
+                A: GrantFind offers both free and premium features. Basic grant
+                browsing and search are typically free. Premium features like AI
+                tools may require a subscription.
+            </p>
+
+            <p>
+                <strong>Q: Does GrantFind guarantee I'll win a grant?</strong>
+            </p>
+            <p>
+                A: No. GrantFind helps you find and apply for grants, but
+                winning depends on your business, the competition, and how well
+                your application meets the grant criteria.
+            </p>
+
+            <p><strong>Q: How often are new grants added?</strong></p>
+            <p>
+                A: We regularly update our database with new opportunities.
+                Check back frequently or use the "Recently Added" sort option.
+            </p>
+
+            <p><strong>Q: Can I use GrantFind on my phone?</strong></p>
+            <p>
+                A: Yes! GrantFind is fully mobile-responsive. Access it through
+                your phone's web browser.
+            </p>
+
+            <h3>Account Questions</h3>
+
+            <p>
+                <strong
+                    >Q: Can I have multiple businesses on one account?</strong
+                >
+            </p>
+            <p>
+                A: Yes! You can add multiple businesses to your account and
+                track grants for each separately.
+            </p>
+
+            <p><strong>Q: How do I change my email address?</strong></p>
+            <p>
+                A: Go to your profile settings and update your email. You'll
+                need to verify the new address.
+            </p>
+
+            <p><strong>Q: Is my information secure?</strong></p>
+            <p>
+                A: Yes. GrantFind uses encryption and secure connections to
+                protect your data.
+            </p>
+
+            <h3>Grant Questions</h3>
+
+            <p><strong>Q: Are these grants real?</strong></p>
+            <p>
+                A: Yes. All grants in GrantFind are verified and sourced from
+                legitimate organizations, foundations, and government programs.
+            </p>
+
+            <p><strong>Q: Do I apply through GrantFind?</strong></p>
+            <p>
+                A: No. GrantFind helps you find grants, but you submit
+                applications directly on the grant provider's website.
+            </p>
+
+            <p><strong>Q: What if a grant deadline has passed?</strong></p>
+            <p>
+                A: Many grants have recurring deadlines. Check the official
+                website to see when applications reopen.
+            </p>
+
+            <p><strong>Q: Can I apply for grants outside my state?</strong></p>
+            <p>
+                A: It depends on the grant. Some are nationwide, while others
+                are location-specific. Check eligibility carefully.
+            </p>
+
+            <h3>AI Tools Questions</h3>
+
+            <p><strong>Q: How does the AI Grant Finder work?</strong></p>
+            <p>
+                A: You answer 9 questions about your business, and our AI
+                matches you with the 10 most relevant grants from our database.
+            </p>
+
+            <p><strong>Q: How does the Application Reviewer work?</strong></p>
+            <p>
+                A: Paste your grant application text, and the AI scores it
+                across 7 criteria, providing specific feedback to strengthen
+                your application.
+            </p>
+
+            <p><strong>Q: How does the Proposal Writer work?</strong></p>
+            <p>
+                A: It's a 6-step wizard that guides you through writing each
+                section of your grant proposal with AI assistance.
+            </p>
+        </div>
+
+        <!-- SECTION 15: GLOSSARY -->
+        <div class="page-break" id="section15">
+            <h2>15. Glossary of Grant Terms</h2>
+
+            <table>
+                <tr>
+                    <th style="width: 25%">Term</th>
+                    <th>Definition</th>
+                </tr>
+                <tr>
+                    <td><strong>Award Amount</strong></td>
+                    <td>
+                        The total funding available through the grant, either as
+                        a lump sum or range.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Deadline</strong></td>
+                    <td>
+                        The final date by which your grant application must be
+                        submitted.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Eligibility</strong></td>
+                    <td>
+                        The requirements you must meet to apply for a grant
+                        (business type, location, revenue, etc.).
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Foundation Grant</strong></td>
+                    <td>
+                        Funding provided by private foundations, often for
+                        specific causes or communities.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Federal Grant</strong></td>
+                    <td>
+                        Funding provided by the U.S. government through agencies
+                        like the SBA.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Grant</strong></td>
+                    <td>
+                        Money given to a business or organization that doesn't
+                        need to be paid back (unlike a loan).
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Grant Application</strong></td>
+                    <td>
+                        The forms and documents you submit to apply for a grant.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Grant Proposal</strong></td>
+                    <td>
+                        A written document explaining your project, goals, and
+                        how you'll use the funding.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Letter of Intent (LOI)</strong></td>
+                    <td>
+                        A brief letter expressing your interest before
+                        submitting a full application.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Match / Matching Funds</strong></td>
+                    <td>
+                        Some grants require you to contribute a percentage of
+                        the project cost.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Non-Dilutive Funding</strong></td>
+                    <td>
+                        Money that doesn't require giving up ownership (equity)
+                        in your business.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Nonprofit</strong></td>
+                    <td>
+                        An organization that operates for a social mission
+                        rather than profit.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>RFP (Request for Proposal)</strong></td>
+                    <td>
+                        An announcement inviting organizations to apply for a
+                        grant or contract.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>SBA</strong></td>
+                    <td>
+                        Small Business Administration – a U.S. government agency
+                        supporting small businesses.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Seed Funding</strong></td>
+                    <td>
+                        Early-stage money to help start a new project or
+                        business.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Small Business</strong></td>
+                    <td>
+                        Generally defined as a company with fewer than 500
+                        employees (varies by industry).
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Technical Assistance</strong></td>
+                    <td>
+                        Support services (training, mentoring) sometimes
+                        included with grants.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Woman-Owned Business</strong></td>
+                    <td>
+                        A business that is at least 51% owned by one or more
+                        women.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Minority-Owned Business</strong></td>
+                    <td>
+                        A business that is at least 51% owned by one or more
+                        minority individuals.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Veteran-Owned Business</strong></td>
+                    <td>
+                        A business that is at least 51% owned by one or more
+                        military veterans.
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- SECTION 16: SUPPORT -->
+        <div class="support-page" id="section16">
+            <h2>16. Support</h2>
+
+            <h3>Need Help?</h3>
+            <p>If you have questions or run into issues, we're here to help!</p>
+
+            <div class="support-box">
+                <p>
+                    <strong>Email Support:</strong><br />
+                    <span class="placeholder">[support email placeholder]</span>
+                </p>
+
+                <p>
+                    <strong>Support Center:</strong><br />
+                    <span class="placeholder">[support link placeholder]</span>
+                </p>
+
+                <p>
+                    <strong>Hours:</strong><br />
+                    Monday – Friday, 9:00 AM – 5:00 PM EST
+                </p>
+            </div>
+
+            <h3>Before Contacting Support</h3>
+            <p>Please have the following ready:</p>
+            <ul>
+                <li>Your account email address</li>
+                <li>A description of the issue you're experiencing</li>
+                <li>Screenshots (if applicable)</li>
+                <li>The device and browser you're using</li>
+            </ul>
+
+            <h3>Feedback</h3>
+            <p>
+                We're always improving GrantFind. If you have suggestions for
+                new features or improvements, we'd love to hear from you!
+            </p>
+
+            <p>
+                <strong>Send Feedback:</strong><br />
+                <span class="placeholder">[feedback email placeholder]</span>
+            </p>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p style="font-size: 18px; font-weight: bold; margin-bottom: 10px">
+                Thank you for using GrantFind!
+            </p>
+            <p style="font-style: italic">
+                Helping entrepreneurs find the funding they deserve.
+            </p>
+            <div
+                style="
+                    width: 100px;
+                    height: 3px;
+                    background: #f5a623;
+                    margin: 20px auto;
+                "
+            ></div>
+            <p>© 2026 GrantFind. All rights reserved.</p>
+        </div>
+    </body>
+</html>
