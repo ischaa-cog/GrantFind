@@ -986,27 +986,6 @@ export default function AdminDashboard() {
     },
   });
 
-  const deleteUserMutation = useMutation({
-    mutationFn: async (userId: number) => {
-      const response = await fetch(`/api/admin/users/${userId}`, {
-        method: "DELETE",
-        headers: { "Authorization": `Bearer ${token}` },
-      });
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || "Failed to delete user");
-      }
-      return response.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
-      toast({ title: "Success", description: "User deleted successfully" });
-    },
-    onError: (error: any) => {
-      toast({ title: "Error", description: error.message || "Failed to delete user", variant: "destructive" });
-    },
-  });
-
   const toggleUserStatusMutation = useMutation({
     mutationFn: async (userId: number) => {
       const response = await fetch(`/api/admin/users/${userId}/status`, {
@@ -1321,12 +1300,6 @@ export default function AdminDashboard() {
       confirmPassword: "",
     });
     setIsEditUserOpen(true);
-  };
-
-  const handleDeleteUser = (userId: number) => {
-    if (confirm("Are you sure you want to delete this user? This will also delete all associated applications and businesses.")) {
-      deleteUserMutation.mutate(userId);
-    }
   };
 
   const handleDeleteGrant = (grantId: number) => {
@@ -2960,15 +2933,6 @@ export default function AdminDashboard() {
                                 data-testid={`button-edit-user-${user.id}`}
                               >
                                 <Edit2 className="w-4 h-4" />
-                              </Button>
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                className="text-red-600 hover:text-red-700"
-                                onClick={() => handleDeleteUser(user.id)}
-                                data-testid={`button-delete-user-${user.id}`}
-                              >
-                                <Trash2 className="w-4 h-4" />
                               </Button>
                             </div>
                           </TableCell>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocation } from "wouter";
-import { User, Mail, Phone, Lock, Trash2, Crown, Check, Loader2, CalendarDays, RefreshCw, Settings, AlertTriangle, ExternalLink } from "lucide-react";
+import { User, Mail, Phone, Lock, Crown, Check, Loader2, CalendarDays, RefreshCw, Settings, AlertTriangle, ExternalLink } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -25,12 +25,10 @@ export default function ProfilePage() {
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [isEditingEmail, setIsEditingEmail] = useState(false);
   const [isEditingPassword, setIsEditingPassword] = useState(false);
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   const [profileForm, setProfileForm] = useState({ firstName: "", lastName: "", phone: "" });
   const [emailForm, setEmailForm] = useState({ newEmail: "", password: "" });
   const [passwordForm, setPasswordForm] = useState({ currentPassword: "", newPassword: "", confirmPassword: "" });
-  const [deleteConfirmation, setDeleteConfirmation] = useState("");
   const [isUpgrading, setIsUpgrading] = useState(false);
   const [isManagingSubscription, setIsManagingSubscription] = useState(false);
   const [isManageDialogOpen, setIsManageDialogOpen] = useState(false);
@@ -215,31 +213,6 @@ export default function ProfilePage() {
     },
   });
 
-  const deleteAccountMutation = useMutation({
-    mutationFn: async () => {
-      const token = getAuthToken();
-      const response = await fetch("/api/user/profile", {
-        method: "DELETE",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      });
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || "Failed to delete account");
-      }
-      return response.json();
-    },
-    onSuccess: () => {
-      logout();
-      setLocation("/");
-      toast({ title: "Account Deleted", description: "Your account has been permanently deleted" });
-    },
-    onError: (error: any) => {
-      toast({ title: "Error", description: error.message, variant: "destructive" });
-    },
-  });
-
   const handleUpdateEmail = () => {
     if (!emailForm.newEmail || !emailForm.password) {
       toast({ title: "Error", description: "Please fill in all fields", variant: "destructive" });
@@ -265,14 +238,6 @@ export default function ProfilePage() {
       currentPassword: passwordForm.currentPassword,
       newPassword: passwordForm.newPassword,
     });
-  };
-
-  const handleDeleteAccount = () => {
-    if (deleteConfirmation !== "DELETE") {
-      toast({ title: "Error", description: "Please type DELETE to confirm", variant: "destructive" });
-      return;
-    }
-    deleteAccountMutation.mutate();
   };
 
   const subscriptionTier = (user as any)?.subscriptionTier || "free";
@@ -668,30 +633,6 @@ export default function ProfilePage() {
               </CardContent>
             </Card>
 
-            {/* Danger Zone */}
-            <Card className="border-red-200">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-red-600">
-                  <Trash2 className="w-5 h-5" />
-                  Danger Zone
-                </CardTitle>
-                <CardDescription>Irreversible actions</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-medium text-gray-900">Delete Account</p>
-                    <p className="text-sm text-gray-600">Permanently delete your account and all associated data</p>
-                  </div>
-                  <Button 
-                    variant="destructive"
-                    onClick={() => setIsDeleteDialogOpen(true)}
-                  >
-                    Delete Account
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </main>
       </div>
@@ -782,41 +723,6 @@ export default function ProfilePage() {
         </DialogContent>
       </Dialog>
 
-      {/* Delete Account Confirmation Dialog */}
-      <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle className="text-red-600">Delete Account</DialogTitle>
-            <DialogDescription>
-              This action cannot be undone. This will permanently delete your account and remove all your data from our servers.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="py-4">
-            <Label>Type DELETE to confirm</Label>
-            <Input
-              value={deleteConfirmation}
-              onChange={(e) => setDeleteConfirmation(e.target.value)}
-              placeholder="Type DELETE"
-              className="mt-2"
-            />
-          </div>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => {
-              setIsDeleteDialogOpen(false);
-              setDeleteConfirmation("");
-            }}>
-              Cancel
-            </Button>
-            <Button 
-              variant="destructive"
-              onClick={handleDeleteAccount}
-              disabled={deleteConfirmation !== "DELETE" || deleteAccountMutation.isPending}
-            >
-              {deleteAccountMutation.isPending ? "Deleting..." : "Delete Account"}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

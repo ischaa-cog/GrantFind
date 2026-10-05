@@ -194,6 +194,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       let user = await storage.getUserByEmail(email);
 
       if (user) {
+        if (user.status === "inactive") {
+          return res.status(403).json({ message: "This account is inactive. Please contact support." });
+        }
+
         // Link Google ID to existing account if not already linked
         if (!user.googleId) {
           user = (await storage.updateUser(user.id, { googleId })) || user;
@@ -258,6 +262,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const isValidPassword = await comparePassword(validatedData.password, user.password);
       if (!isValidPassword) {
         return res.status(401).json({ message: "Invalid email or password" });
+      }
+
+      if (user.status === "inactive") {
+        return res.status(403).json({ message: "This account is inactive. Please contact support." });
       }
       
       // Generate token
@@ -598,24 +606,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error updating user:", error);
       res.status(500).json({ message: "Failed to update user" });
-    }
-  });
-
-  app.delete("/api/admin/users/:id", authenticateAdmin, async (req: AuthenticatedAdminRequest, res) => {
-    try {
-      const storage = await storagePromise;
-      const userId = parseInt(req.params.id);
-      
-      const success = await storage.deleteUser(userId);
-      
-      if (!success) {
-        return res.status(404).json({ message: "User not found" });
-      }
-      
-      res.json({ message: "User deleted successfully" });
-    } catch (error) {
-      console.error("Error deleting user:", error);
-      res.status(500).json({ message: "Failed to delete user" });
     }
   });
 
@@ -1964,20 +1954,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error updating profile:", error);
       res.status(500).json({ message: "Failed to update profile" });
-    }
-  });
-
-  app.delete("/api/user/profile", authenticateToken, async (req: AuthenticatedRequest, res) => {
-    try {
-      const storage = await storagePromise;
-      const userId = req.user!.id;
-
-      // Delete user and all associated data
-      await storage.deleteUser(userId);
-      res.json({ message: "Account deleted successfully" });
-    } catch (error) {
-      console.error("Error deleting account:", error);
-      res.status(500).json({ message: "Failed to delete account" });
     }
   });
 

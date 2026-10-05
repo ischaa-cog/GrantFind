@@ -56,6 +56,10 @@ export async function authenticateToken(req: AuthenticatedRequest, res: Response
       return res.status(403).json({ message: 'User not found' });
     }
 
+    if (user.status === 'inactive') {
+      return res.status(403).json({ message: 'This account is inactive. Please contact support.' });
+    }
+
     req.user = { id: user.id, email: user.email };
     next();
   } catch (error) {
