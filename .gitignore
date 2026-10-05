@@ -19,3 +19,6 @@ webhook-configs.json
 # Generated reports and debugging captures
 deliverables/
 screenshots/
+.playwright-mcp/
+backups/
+.vercel/

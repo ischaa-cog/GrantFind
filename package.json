@@ -9,7 +9,8 @@
     "start": "NODE_ENV=production node dist/index.js",
     "check": "tsc",
     "test": "tsx --test tests/*.test.ts",
-    "db:push": "drizzle-kit push"
+    "db:push": "drizzle-kit push",
+    "build:vercel": "vite build && node scripts/build-vercel.mjs"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -84,6 +85,7 @@
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "pdfjs-dist": "^5.4.530",
+    "postgres": "^3.4.9",
     "puppeteer": "^24.35.0",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
