@@ -564,7 +564,7 @@ export function registerStripeRoutes(app: Express) {
                   html: `<p>Hi ${user.firstName},</p>
 <p>Your GrantFind Pro ${interval} subscription has successfully renewed for <strong>$${amountDollars}</strong>.</p>
 <p>Your next billing date is <strong>${nextBillingDate}</strong>.</p>
-<p>You can manage your subscription from your <a href="https://grantfind.replit.app/profile">profile page</a>.</p>
+<p>You can manage your subscription from your <a href="https://grantfind.io/profile">profile page</a>.</p>
 <p>Thank you for continuing to use GrantFind!</p>
 <p>– The GrantFind Team</p>`,
                 });
@@ -641,7 +641,7 @@ export function registerStripeRoutes(app: Express) {
               subject: "Your GrantFind Pro subscription has ended",
               html: `<p>Hi ${user.firstName},</p>
 <p>Your GrantFind Pro subscription has ended. You have been moved to the Free plan.</p>
-<p>You can resubscribe anytime from your <a href="https://grantfind.replit.app/profile">profile page</a>.</p>
+<p>You can resubscribe anytime from your <a href="https://grantfind.io/profile">profile page</a>.</p>
 <p>– The GrantFind Team</p>`,
             }).catch(console.error);
           }
@@ -661,7 +661,7 @@ export function registerStripeRoutes(app: Express) {
             subject: "Action required: GrantFind payment failed",
             html: `<p>Hi ${user.firstName},</p>
 <p>We were unable to process your GrantFind Pro subscription payment.</p>
-<p>Please update your payment method to keep your Pro access: <a href="https://grantfind.replit.app/profile">Update Payment</a>.</p>
+<p>Please update your payment method to keep your Pro access: <a href="https://grantfind.io/profile">Update Payment</a>.</p>
 <p>If payment is not resolved, your account will be downgraded to the Free plan.</p>
 <p>– The GrantFind Team</p>`,
           }).catch(console.error);
@@ -777,7 +777,7 @@ export function registerStripeRoutes(app: Express) {
           subject: "Your GrantFind Pro subscription has been cancelled",
           html: `<p>Hi ${user.firstName},</p>
 <p>Your GrantFind Pro subscription has been cancelled. You now have access to the Free plan.</p>
-<p>You can resubscribe anytime from your <a href="https://grantfind.replit.app/profile">profile page</a>.</p>
+<p>You can resubscribe anytime from your <a href="https://grantfind.io/profile">profile page</a>.</p>
 <p>– The GrantFind Team</p>`,
         }).catch(console.error);
       }

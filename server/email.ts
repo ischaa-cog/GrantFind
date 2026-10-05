@@ -128,7 +128,7 @@ export async function sendRegistrationConfirmationEmail(
             </ul>
             
             <div style="text-align: center; margin: 30px 0;">
-              <a href="https://grantfind.replit.app/dashboard" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 14px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">Go to Dashboard</a>
+              <a href="https://grantfind.io/" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 14px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">Go to Dashboard</a>
             </div>
             
             <p style="margin-bottom: 10px;">If you have any questions, feel free to reach out to our support team.</p>
