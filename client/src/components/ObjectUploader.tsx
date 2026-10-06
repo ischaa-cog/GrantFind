@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import Uppy from "@uppy/core";
-import { DashboardModal } from "@uppy/react";
-import AwsS3 from "@uppy/aws-s3";
+import DashboardModal from "@uppy/react/dashboard-modal";
+import XHRUpload from "@uppy/xhr-upload";
 import type { UploadResult } from "@uppy/core";
 import { Button } from "@/components/ui/button";
 import "../uppy-styles.css";
@@ -31,16 +31,21 @@ export function ObjectUploader({
 }: ObjectUploaderProps) {
   const [showModal, setShowModal] = useState(false);
   const [uppy] = useState(() =>
-    new Uppy({
+    new Uppy<Record<string, unknown>, Record<string, unknown>>({
       restrictions: {
         maxNumberOfFiles,
         maxFileSize,
       },
       autoProceed: false,
     })
-      .use(AwsS3, {
-        shouldUseMultipart: false,
-        getUploadParameters: onGetUploadParameters,
+      // Plain PUT to a signed URL. Supabase Storage doesn't return the ETag
+      // header the S3 uploader waits for, which left uploads stuck at 100%.
+      .use(XHRUpload, {
+        method: "PUT",
+        formData: false,
+        endpoint: async () => (await onGetUploadParameters()).url,
+        headers: (file) => ({ "Content-Type": file.type || "application/octet-stream" }),
+        getResponseData: (xhr) => ({ url: xhr.responseURL }),
       })
       .on("complete", (result) => {
         onComplete?.(result);
