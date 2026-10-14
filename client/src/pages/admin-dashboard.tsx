@@ -305,6 +305,106 @@ function WeeklyReport({ token }: { token: string | null }) {
   );
 }
 
+function LaborDayReport({ token }: { token: string | null }) {
+  const { data: report, isLoading, error, refetch, isFetching } = useQuery<any>({
+    queryKey: ["/api/admin/reports/labor-day"],
+    queryFn: async () => {
+      const res = await fetch("/api/admin/reports/labor-day", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => null);
+        throw new Error(body?.message || "Failed to fetch Labor Day report");
+      }
+      return res.json();
+    },
+    enabled: !!token,
+    staleTime: 0,
+    refetchOnMount: "always",
+  });
+
+  const fmt = (iso: string | null) =>
+    iso ? new Date(iso).toLocaleString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" }) : "—";
+  const statusLabel = (c: any) =>
+    c.status === "trialing" ? "In trial" : c.status === "active" ? "Paid, active" : c.status === "past_due" ? "Payment failing" : c.status === "canceled" ? "Cancelled" : c.status;
+
+  return (
+    <div className="space-y-4 mt-10">
+      <div className="flex items-center justify-between flex-wrap gap-3">
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900">Labor Day Campaign Report</h2>
+          {report && (
+            <p className="text-sm text-gray-500 mt-0.5">
+              Live from Stripe · updated {fmt(report.generatedAt)}
+            </p>
+          )}
+        </div>
+        <Button variant="outline" size="sm" onClick={() => refetch()} disabled={isFetching}>
+          {isFetching ? "Refreshing…" : "Refresh"}
+        </Button>
+      </div>
+
+      {isLoading && <p className="text-sm text-gray-500">Loading Labor Day report…</p>}
+      {error && <p className="text-sm text-red-600">{(error as Error).message}</p>}
+
+      {report && (
+        <>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              ["Bundles claimed", `${report.claimed} of ${report.bundlesOffered}`, `${((report.claimed / report.bundlesOffered) * 100).toFixed(1)}% claim rate`],
+              ["Converted to paid", String(report.convertedToPaid), `${report.inTrial} still in trial`],
+              ["Revenue collected", `${report.revenue.toFixed(2)}`, "from campaign subscriptions"],
+              ["Cancelled", String(report.cancelled), `${report.abandonedCheckouts} abandoned checkouts`],
+            ].map(([label, value, sub]) => (
+              <Card key={label}>
+                <CardContent className="pt-5">
+                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">{label}</p>
+                  <p className="text-2xl font-bold text-gray-900 mt-1">{value}</p>
+                  <p className="text-xs text-gray-500 mt-1">{sub}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <Card>
+            <CardContent className="pt-5">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Claimed</TableHead>
+                    <TableHead>Plan</TableHead>
+                    <TableHead>Trial ends</TableHead>
+                    <TableHead>First payment</TableHead>
+                    <TableHead>Paid so far</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Next charge</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {report.claims.length === 0 && (
+                    <TableRow><TableCell colSpan={7} className="text-center text-gray-500">No claims yet</TableCell></TableRow>
+                  )}
+                  {report.claims.map((c: any, i: number) => (
+                    <TableRow key={i}>
+                      <TableCell>{fmt(c.claimedAt)}</TableCell>
+                      <TableCell className="capitalize">{c.plan}, ${c.price}</TableCell>
+                      <TableCell>{fmt(c.trialEndsAt)}</TableCell>
+                      <TableCell>{fmt(c.firstPaymentAt)}</TableCell>
+                      <TableCell>${c.amountPaid.toFixed(2)}</TableCell>
+                      <TableCell>{statusLabel(c)}{c.cancelAtPeriodEnd ? " (cancelling)" : ""}</TableCell>
+                      <TableCell>{fmt(c.nextChargeAt)}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </>
+      )}
+    </div>
+  );
+}
+
 export default function AdminDashboard() {
   const [, setLocation] = useLocation();
   const { admin, adminLogout } = useAdminAuth();
@@ -4091,6 +4191,7 @@ export default function AdminDashboard() {
           {/* Reports Tab */}
           <TabsContent value="reports">
             <WeeklyReport token={token} />
+            <LaborDayReport token={token} />
           </TabsContent>
         </Tabs>
       </main>

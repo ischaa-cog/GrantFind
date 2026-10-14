@@ -2,6 +2,8 @@ import crypto from "crypto";
 
 export const LABOR_DAY_CAMPAIGN = "labor-day-bundle-2026";
 export const TRIAL_DAYS = 30;
+// Number of Labor Day bundles offered, used for the claim rate in the admin report.
+export const LABOR_DAY_BUNDLES_OFFERED = 107;
 const TOKEN_LIFETIME_MS = 60 * 60 * 1000;
 const INVITE_LIFETIME_MS = 90 * 24 * 60 * 60 * 1000;
 

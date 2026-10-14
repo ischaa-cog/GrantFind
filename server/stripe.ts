@@ -7,6 +7,7 @@ import { Resend } from "resend";
 import { sendTrialEndingSoonEmail, sendTrialStartedEmail } from "./email";
 import {
   LABOR_DAY_CAMPAIGN,
+  LABOR_DAY_BUNDLES_OFFERED,
   TRIAL_DAYS,
   createLaborDayInviteToken,
   createTrialAccessToken,
@@ -22,6 +23,51 @@ function getStripe(): Stripe | null {
   const key = process.env.STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY_TEST;
   if (!key) return null;
   return new Stripe(key, { apiVersion: "2025-04-30.basil" as any });
+}
+
+// Live Labor Day campaign numbers for the admin Reports tab, read straight from Stripe.
+export async function buildLaborDayReport(stripe: Stripe) {
+  const sessions: Stripe.Checkout.Session[] = [];
+  for await (const session of stripe.checkout.sessions.list({ limit: 100 })) {
+    if (session.metadata?.trialCampaign === LABOR_DAY_CAMPAIGN) sessions.push(session);
+  }
+
+  const claims = [];
+  for (const session of sessions.filter((s) => s.status === "complete" && s.subscription)) {
+    const subscriptionId = typeof session.subscription === "string" ? session.subscription : session.subscription!.id;
+    const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+    const invoices = await stripe.invoices.list({ subscription: subscriptionId, limit: 100 });
+    const paid = invoices.data.filter((invoice) => invoice.status === "paid" && invoice.amount_paid > 0);
+    const item = subscription.items.data[0];
+    claims.push({
+      claimedAt: new Date(session.created * 1000).toISOString(),
+      plan: getBillingPeriodFromSubscription(subscription),
+      price: (item?.price.unit_amount ?? 0) / 100,
+      status: subscription.status,
+      trialEndsAt: subscription.trial_end ? new Date(subscription.trial_end * 1000).toISOString() : null,
+      cancelAtPeriodEnd: subscription.cancel_at_period_end,
+      firstPaymentAt: paid.length ? new Date(Math.min(...paid.map((i) => i.created)) * 1000).toISOString() : null,
+      amountPaid: paid.reduce((sum, i) => sum + i.amount_paid, 0) / 100,
+      nextChargeAt: item?.current_period_end && !["canceled", "incomplete_expired"].includes(subscription.status)
+        ? new Date(item.current_period_end * 1000).toISOString()
+        : null,
+    });
+  }
+  claims.sort((a, b) => b.claimedAt.localeCompare(a.claimedAt));
+
+  return {
+    generatedAt: new Date().toISOString(),
+    campaign: LABOR_DAY_CAMPAIGN,
+    bundlesOffered: LABOR_DAY_BUNDLES_OFFERED,
+    checkoutsStarted: sessions.length,
+    abandonedCheckouts: sessions.filter((s) => s.status === "expired").length,
+    claimed: claims.length,
+    convertedToPaid: claims.filter((c) => c.firstPaymentAt).length,
+    inTrial: claims.filter((c) => c.status === "trialing").length,
+    cancelled: claims.filter((c) => c.status === "canceled" || c.cancelAtPeriodEnd).length,
+    revenue: claims.reduce((sum, c) => sum + c.amountPaid, 0),
+    claims,
+  };
 }
 
 export async function reconcilePendingCheckoutPayments(from?: Date, to?: Date) {
@@ -284,6 +330,19 @@ export function registerStripeRoutes(app: Express) {
       }
     },
   );
+
+  // Live Labor Day campaign report for the admin Reports tab.
+  app.get("/api/admin/reports/labor-day", authenticateAdmin, async (_req: AuthenticatedAdminRequest, res: Response) => {
+    try {
+      const stripe = getStripe();
+      if (!stripe) return res.status(503).json({ message: "Stripe is not configured." });
+
+      res.json(await buildLaborDayReport(stripe));
+    } catch (error) {
+      console.error("Error building Labor Day report:", error);
+      res.status(500).json({ message: "Failed to build Labor Day report" });
+    }
+  });
 
   app.post("/api/stripe/labor-day-trial/invite", (req: Request, res: Response) => {
     const secret = process.env.SESSION_SECRET;
